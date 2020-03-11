@@ -35,7 +35,6 @@
 #ifndef ROS_NODE_HANDLE_H_
 #define ROS_NODE_HANDLE_H_
 
-#include "api.h"
 #include <stdint.h>
 
 #include "ros_lib/std_msgs/Time.h"
@@ -122,12 +121,11 @@ protected:
   Publisher * publishers[MAX_PUBLISHERS];
   Subscriber_ * subscribers[MAX_SUBSCRIBERS];
 
-  uint32_t cyc;
   /*
    * Setup Functions
    */
 public:
-  NodeHandle_() : configured_(false), cyc(0)
+  NodeHandle_() : configured_(false)
   {
 
     for (unsigned int i = 0; i < MAX_PUBLISHERS; i++)
@@ -343,14 +341,9 @@ public:
           }
           else
           {
-            pros::lcd::print(6, "topic_ %X, %X", topic_, subscribers[topic_ - 100]);
             if (subscribers[topic_ - 100])
               subscribers[topic_ - 100]->callback(message_in);
           }
-        }
-        else
-        {
-          pros::lcd::print(6, "checksum %X NOK topic %X", checksum_, topic_);
         }
       }
     }
@@ -539,8 +532,6 @@ public:
     l += 7;
     message_out[l++] = 255 - (chk % 256);
 
-    pros::lcd::print(5, "Publishing %d bytes, cyc %d", l, ++cyc);
-
     if (l <= OUTPUT_SIZE)
     {
       hardware_.write(message_out, l);
@@ -548,7 +539,7 @@ public:
     }
     else
     {
-      logerror("Message from device dropped: message larger than buffer.");
+      logerror("Messa ge from device dropped: message larger than buffer.");
       return -1;
     }
   }

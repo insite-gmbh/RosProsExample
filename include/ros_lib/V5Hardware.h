@@ -70,7 +70,6 @@ class V5Hardware {
     // note: the serial port initialization for rosserial for VEX Cortex must be implemented in `src/init.cpp`
     // see that file for more information.
     void init() {
-      pros::lcd::initialize();
       pros::c::serctl(SERCTL_DISABLE_COBS, NULL);
       rosFile = fopen("/ser/sout", "r+");
 
@@ -97,17 +96,6 @@ class V5Hardware {
 
     // write data to the connection to ROS
     void write(uint8_t* data, int length) {
-      char s[20];
-      for (int i = 0; i < 7; ++i)
-      {
-        uint8_t nib = (data[i] & 0xF0) >> 4;
-        s[i * 2] = nib > 9 ? nib - 10 + 'A' : nib + '0';
-        nib = data[i] & 0x0F;
-        s[i * 2 + 1] = nib > 9 ? nib - 10 + 'A' : nib + '0';
-      }
-      s[14] = 0;
-      pros::lcd::set_text(0, s);
-      pros::lcd::print(1, "len=%d", length);
       for(int i = 0; i < length; i++) {
         vexroswritechar(data[i]);
       }
@@ -126,12 +114,7 @@ class V5Hardware {
 
     // writing helper.
     void vexroswritechar(uint8_t data) {
-      uint8_t c = fputc(data, rosFile);
-      if (c != data)
-      {
-        pros::lcd::print(2, "err! %02X", c);
-      }
-      // fflush(rosFile);
+      fputc(data, rosFile);
     }
 
     // reading helper.
