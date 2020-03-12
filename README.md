@@ -64,5 +64,5 @@ This will start a python script that displays a keyboard layout to create twist 
 If your system uses a different /dev/tty* to talk to the V5, you can change this in the launch file. Furthermore, initially rosserial uses a baudrate of 57600. Our experience is, that the system can be run at 115200 without problems. 
 To modify the launch file, enter the command
 
-`nano ~/ros-vex-workspace/src/rosserial/rosserial_vex_v5/launch/minimal_robot.launch'
+`nano ~/ros-vex-workspace/src/rosserial/rosserial_vex_v5/launch/minimal_robot.launch`
 
