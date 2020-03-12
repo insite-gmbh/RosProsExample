@@ -1,7 +1,6 @@
 /*
- * rosserial Publisher Example for VEX Cortex
- * Prints "hello world!"
- */
+ * rosserial Publisher/Subscriber Example for VEX Cortex
+*/
 
 #include "ros_lib/ros.h"
 #include "ros_lib/std_msgs/String.h"
