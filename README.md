@@ -21,3 +21,7 @@ roslaunch rosserial_vex_v5 hello_world.launch
 new terminal:
 
 docker exec -it ros-pros /bin/bash
+
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+
+
