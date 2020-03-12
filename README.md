@@ -31,6 +31,9 @@ cd ~ && cd pros-projects/RosProsExample && prosv5 make all && prosv5 upload
 
 This will compile the example code and upload it to the V5.
 
+For further information, see the source code file
+https://github.com/insite-gmbh/RosProsExample/blob/master/src/twistdrive.cpp
+
 If you later make any changes to the example project, you could save some typing by entering
 
 `prosv5 mu`
