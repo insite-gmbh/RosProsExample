@@ -24,4 +24,9 @@ docker exec -it ros-pros /bin/bash
 
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 
+:~/ros-vex-workspace/src/rosserial/rosserial_vex_v5/launch# nano minimal_robot.launch
+
+57600 -> 115200
+
+
 
